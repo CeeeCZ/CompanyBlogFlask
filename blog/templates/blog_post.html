@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+  <h3>{{post.title}}</h3>
+  <h5>Written by: {{post.author.username}}</h5>
+  <h5>Published: {{post.date.strftime('%Y %B %d')}}</h5>
+  <p>{{post.text}}</p><br>
+  <div class="panel-footer row"><!-- panel-footer -->
+    <div class="col text-left">
+        <div class="previous">
+              <a href="{{url_for('core.index')}}" class="btn btn-primary" role="button" aria-pressed="true">Back
+              <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+        </div>
+    </div>
+    <div class="col-6"> </div>
+
+{% if post.author == current_user %}
+
+<div class="col text-right">
+        <div class="next">
+          <a href="{{url_for('blog_posts.update',blog_post_id=post.id)}}">Update</a>
+          <button type="button" class="btn btn-danger" data-toggle='modal' data-target='#del_modal'>delete
+              <span class="glyphicon glyphicon-chevron-right"></span>
+          </button>
+        </div>
+    </div>
+</div><!-- end panel-footer -->
+
+<div>
+
+</div>
+
+{% endif %}
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id='del_modal'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Post?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete the post?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="{{url_for('blog_posts.delete_post',blog_post_id=post.id)}}" method="post">
+          <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

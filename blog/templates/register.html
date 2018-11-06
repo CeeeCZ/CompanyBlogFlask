@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- <form method="POST">
+  {{form.hidden_tag()}}
+  {{form.email.label}}{{form.email}}<br>
+  {{form.username.label}}{{form.username}}<br>
+  {{form.password.label}}{{form.password}}<br>
+  {{form.pass_confirm.label}}{{form.pass_confirm}}<br>
+  {{form.submit()}}
+
+</form> -->
+<br>
+<div class="container">
+<h2>Registration Form</h2>
+
+<form>
+  {{form.hidden_tag()}}
+  <div class="form-group">
+    {{form.email.label(class='font-weight-bold')}}
+    {{form.email(class="form-control", placeholder='email@example.com')}}
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    {{form.username.label(class='font-weight-bold')}}
+    {{form.username(class="form-control", placeholder='Username')}}
+      </div>
+  <div class="form-group">
+    {{form.password.label(class='font-weight-bold')}}
+    {{form.password(class="form-control", placeholder='Password')}}
+  </div>
+  <div class="form-group">
+    {{form.pass_confirm.label(class='font-weight-bold')}}
+    {{form.pass_confirm(class="form-control", placeholder='Confirm your password')}}
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Privacy Policy Consent</label>
+  </div>
+    {{form.submit(class="btn btn-primary")}}
+</form>
+</div>
+
+
+{% endblock %}
